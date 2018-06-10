@@ -9,7 +9,7 @@ class Client:
 
     def fetch(self, uri):
         fetch_uri = self.base_uri + uri + '&api_key=' + self.api_key
-        print(fetch_uri)
+        # print(fetch_uri)
         response = requests.get(fetch_uri)
         return response.json()
 
