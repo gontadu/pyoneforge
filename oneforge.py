@@ -1,16 +1,19 @@
-import urllib, json
+import requests
 
 
-class ForexDataClient:
+class Client:
     def __init__(self, api_key):
         self.api_key = api_key
-        self.base_uri = 'http://forex.1forge.com/1.0.3/'  # Reflects v1.0.3 as on the web documentation
+        # Reflects v1.0.3 as on the web documentation
+        self.base_uri = 'http://forex.1forge.com/1.0.3/'
 
     def fetch(self, uri):
-        response = urllib.urlopen(self.base_uri + uri + '&api_key=' + self.api_key)
-        return json.load(response)
+        fetch_uri = self.base_uri + uri + '&api_key=' + self.api_key
+        print(fetch_uri)
+        response = requests.get(fetch_uri)
+        return response.json()
 
-    def quota(self):
+    def getQuota(self):
         return self.fetch('quota?cache=false')
 
     def getSymbols(self):
@@ -24,7 +27,8 @@ class ForexDataClient:
         try:
             return data['market_is_open']
         except:
-            print data
+            print(data)
 
     def convert(self, currency_from, currency_to, quantity):
-        return self.fetch('convert?from=' + currency_from + '&to=' + currency_to + '&quantity=' + str(quantity))
+        return self.fetch('convert?from=' + currency_from + '&to=' +
+                          currency_to + '&quantity=' + str(quantity))
