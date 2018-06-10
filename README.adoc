@@ -1,0 +1,122 @@
+= pyoneforge
+:toc:
+
+== Introduction
+
+pyoneforge is a Python 3 Library for fetching realtime forex quotes from https://1forge.com/forex-data-api/api-documentation[1forge]
+
+This is intended to be a Python3 port of the existing python library available at https://github.com/1forge/python-forex-quotes[python_forex_quotes], rewritten to use the excellent `requests` library
+////
+
+* link:#installation[Installation]
+* link:#usage[Usage]
+** link:#get-the-list-of-available-symbols[List of Symbols available]
+** link:#get-quotes-for-specified-symbols[Get quotes for specific
+symbols]
+** link:#convert-from-one-currency-to-another[Convert from one currency
+to another]
+* link:#support-and-contact[Support / Contact]
+////
+
+== Requirements
+
+* Python 3+
+* An API key which you can obtain for free at
+http://1forge.com/forex-data-api
+
+////
+== Installation
+
+[source,bash]
+----
+pip install pyoneforge
+----
+
+Usage
+~~~~~
+
+Instantiate the client
+^^^^^^^^^^^^^^^^^^^^^^
+
+[source,python]
+----
+import pyoneforge
+
+#You can get an API key for free at 1forge.com
+client = pyoneforge.ForexDataClient('YOUR_API_KEY')
+----
+
+Get the list of available symbols:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[source,python]
+----
+import pyoneforge
+client = pyoneforge.ForexDataClient('YOUR_API_KEY')
+
+print client.getSymbols()
+----
+
+Get quotes for specified symbols:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[source,python]
+----
+import pyoneforge
+client = pyoneforge.ForexDataClient('YOUR_API_KEY')
+
+print client.getQuotes(['EURUSD', 'GBPJPY'])
+----
+
+Convert from one currency to another:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[source,python]
+----
+import pyoneforge
+client = pyoneforge.ForexDataClient('YOUR_API_KEY')
+
+print client.convert('EUR', 'USD', 100)
+----
+
+Check if the market is open:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[source,python]
+----
+import pyoneforge
+client = pyoneforge.ForexDataClient('YOUR_API_KEY')
+
+if client.marketIsOpen() == True:
+    print "Market is open!"
+----
+
+Check your usage / quota limit:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+[source,python]
+----
+import pyoneforge
+client = pyoneforge.ForexDataClient('YOUR_API_KEY')
+
+print client.quota()
+----
+////
+
+== Contributing
+
+Thank you for considering contributing! Any issues, bug fixes,
+suggestions, improvements or help in any other way is always
+appreciated. Please feel free to open an issue or create a pull request.
+
+////
+Support and Contact
+~~~~~~~~~~~~~~~~~~~
+
+Please contact me at contact@1forge.com if you have any questions or
+requests.
+////
+
+== License and Terms
+
+This library is provided without warranty under the MIT license.
