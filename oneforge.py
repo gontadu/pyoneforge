@@ -4,8 +4,7 @@ import requests
 class Client:
     def __init__(self, api_key):
         self.api_key = api_key
-        # Reflects v1.0.3 as on the web documentation
-        self.base_uri = 'http://forex.1forge.com/1.0.3/'
+        self.base_uri = 'https://api.1forge.com/'   # New API
 
     def fetch(self, uri):
         fetch_uri = self.base_uri + uri + '&api_key=' + self.api_key
@@ -32,3 +31,5 @@ class Client:
     def convert(self, currency_from, currency_to, quantity):
         return self.fetch('convert?from=' + currency_from + '&to=' +
                           currency_to + '&quantity=' + str(quantity))
+
+# End of file
